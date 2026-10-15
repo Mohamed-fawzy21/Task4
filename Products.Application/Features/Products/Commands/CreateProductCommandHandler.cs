@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.Extensions.Logging;
 using Products.Application.Abstractions.Persistence;
 using Products.Domain.Entities;
 
@@ -6,7 +7,8 @@ namespace Products.Application.Features.Products.Commands;
 
 public sealed class CreateProductCommandHandler(
     IProductRepository productRepository,
-    IUnitOfWork unitOfWork) : IRequestHandler<CreateProductCommand, int>
+    IUnitOfWork unitOfWork,
+    ILogger<CreateProductCommandHandler> logger) : IRequestHandler<CreateProductCommand, int>
 {
     public async Task<int> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
@@ -14,6 +16,7 @@ public sealed class CreateProductCommandHandler(
         await productRepository.AddAsync(product, cancellationToken);
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
+        logger.LogInformation("Created product {ProductId}", product.Id);
         return product.Id;
     }
 }

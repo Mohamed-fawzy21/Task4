@@ -4,6 +4,7 @@
 # Build output
 **/bin/
 **/obj/
+logs/
 
 # User-specific files
 *.user

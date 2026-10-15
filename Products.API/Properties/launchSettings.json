@@ -9,5 +9,18 @@
       },
       "applicationUrl": "https://localhost:65102;http://localhost:65103"
     }
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information",
+      "Products.API": "Debug"
+    }
+  },
+  "commands": {
+    "restore": "dotnet restore .\\Products.sln",
+    "build": "dotnet build .\\Products.sln",
+    "run": "dotnet run --project .\\Products.API\\Products.API.csproj"
   }
 }
